@@ -16,5 +16,5 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	handle_apply_gravity(delta)
-	get_character().velocity.x = move_toward(get_character().velocity.x, 0, state_machine.get_node("run").get("move_speed"))
+	get_character().velocity.x = move_toward(get_character().velocity.x, 0, state_machine.get_shared_property("run", "move_speed"))
 	get_character().move_and_slide()
