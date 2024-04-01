@@ -9,6 +9,9 @@ signal exited_transition_in
 signal exited_transition_out
 
 
+@export var one_shot := false
+
+
 @onready var state_machine := get_parent() as StateMachine
 
 

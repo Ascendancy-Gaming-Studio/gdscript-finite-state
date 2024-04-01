@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4t5wqp80b8d6"]
+[gd_scene load_steps=9 format=3 uid="uid://c4t5wqp80b8d6"]
 
-[ext_resource type="PackedScene" uid="uid://bsogmbb2qmp24" path="res://features/state-machine/objects/depurator.tscn" id="2_an0qr"]
 [ext_resource type="PackedScene" uid="uid://bcr816ugiyxln" path="res://features/state-machine/objects/state_machine.tscn" id="2_wwlxu"]
 [ext_resource type="PackedScene" uid="uid://b5n5mxny28o4f" path="res://features/state-machine/objects/state.tscn" id="3_pobf4"]
 [ext_resource type="Script" path="res://features/characters/state-machine/scripts/idle.gd" id="4_mo1s0"]
@@ -14,8 +13,6 @@ size = Vector2(16, 16)
 
 [node name="character" type="CharacterBody2D"]
 collision_mask = 12
-
-[node name="depurator" parent="." instance=ExtResource("2_an0qr")]
 
 [node name="state_machine" parent="." instance=ExtResource("2_wwlxu")]
 

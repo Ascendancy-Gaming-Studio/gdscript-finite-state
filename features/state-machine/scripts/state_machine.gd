@@ -4,13 +4,11 @@ class_name StateMachine extends Node
 
 
 signal auto_start_changed
-signal one_shot_changed
 signal current_state_changed
 signal previous_state_changed
 
 
 @export var _auto_start := true: set=set_auto_start, get=get_auto_start
-@export var _one_shot := false: set=set_one_shot, get=get_one_shot
 
 
 var _previous_state: String: set=set_previous_state, get=get_previous_state
@@ -27,15 +25,6 @@ func set_auto_start(new_value: bool) -> void:
 
 	_auto_start = new_value
 	emit_signal("auto_start_changed")
-
-
-func set_one_shot(new_value: bool) -> void:
-	if _one_shot == new_value:
-		return
-
-
-	_one_shot = new_value
-	emit_signal("one_shot_changed")
 
 
 func set_current_state(new_value: String) -> void:
@@ -58,10 +47,6 @@ func set_previous_state(new_value: String) -> void:
 
 func get_auto_start() -> bool:
 	return _auto_start
-
-
-func get_one_shot() -> bool:
-	return _one_shot
 
 
 func get_current_state() -> String:
@@ -136,8 +121,9 @@ func _init_previous_state(node: State) -> void:
 	node.emit_signal("exited_transition_out")
 
 
+# Finaliza o estado inicializado quando o modo de execuçao unica esta ativo.
 func handle_transition_one_shot(node: State) -> void:
-	if not get_one_shot():
+	if not node.get("one_shot"):
 		return
 
 

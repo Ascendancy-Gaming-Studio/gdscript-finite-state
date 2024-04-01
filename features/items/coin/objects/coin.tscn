@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://c82uxyxi6xfh5"]
+[gd_scene load_steps=12 format=3 uid="uid://c82uxyxi6xfh5"]
 
 [ext_resource type="Texture2D" uid="uid://dorfijv0seoe0" path="res://features/items/coin/sprites/coin.png" id="1_sw4xf"]
 [ext_resource type="PackedScene" uid="uid://bcr816ugiyxln" path="res://features/state-machine/objects/state_machine.tscn" id="1_u63e8"]
 [ext_resource type="Script" path="res://features/items/coin/scripts/coin.gd" id="1_x8vs4"]
 [ext_resource type="PackedScene" uid="uid://boiq821ko8lyi" path="res://features/effects/objects/sparkler_yellow.tscn" id="2_5mefu"]
 [ext_resource type="PackedScene" uid="uid://b5n5mxny28o4f" path="res://features/state-machine/objects/state.tscn" id="2_c6gtf"]
-[ext_resource type="PackedScene" uid="uid://bsogmbb2qmp24" path="res://features/state-machine/objects/depurator.tscn" id="3_eanrp"]
 [ext_resource type="Script" path="res://features/items/coin/scripts/spawn.gd" id="4_jdh5c"]
 [ext_resource type="Script" path="res://features/items/coin/scripts/update_score.gd" id="6_hp4u1"]
 [ext_resource type="Script" path="res://features/items/coin/scripts/dispose.gd" id="7_g0y6h"]
@@ -103,20 +102,20 @@ score = 2
 fx = ExtResource("2_5mefu")
 metadata/_edit_group_ = true
 
-[node name="depurator" parent="." instance=ExtResource("3_eanrp")]
-
 [node name="state_machine" parent="." instance=ExtResource("1_u63e8")]
 _auto_start = false
-_one_shot = true
 
 [node name="update_score" parent="state_machine" instance=ExtResource("2_c6gtf")]
 script = ExtResource("6_hp4u1")
+one_shot = true
 
 [node name="spawn" parent="state_machine" instance=ExtResource("2_c6gtf")]
 script = ExtResource("4_jdh5c")
+one_shot = true
 
 [node name="dispose" parent="state_machine" instance=ExtResource("2_c6gtf")]
 script = ExtResource("7_g0y6h")
+one_shot = true
 
 [node name="collision" type="CollisionPolygon2D" parent="."]
 position = Vector2(24, 0)
