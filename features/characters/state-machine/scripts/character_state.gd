@@ -1,44 +1,6 @@
 class_name CharacterState extends State
 
 
-const DIRECTION_UP := {
-	"move_up": [
-		KEY_W,
-		KEY_UP,
-	]
-}
-const DIRECTION_DOWN := {
-	"move_down": [
-		KEY_S,
-		KEY_DOWN,
-	]
-}
-const DIRECTION_LEFT := {
-	"move_left": [
-		KEY_A,
-		KEY_LEFT,
-	]
-}
-const DIRECTION_RIGHT := {
-	"move_right": [
-		KEY_D,
-		KEY_RIGHT,
-	],
-}
-const JUMP := {
-	"jump": [
-		KEY_SPACE,
-	]
-}
-const INPUT_MAP := [
-	DIRECTION_UP,
-	DIRECTION_DOWN,
-	DIRECTION_LEFT,
-	DIRECTION_RIGHT,
-	JUMP,
-]
-
-
 var input_vector := Vector2.ZERO
 var input_direction := Vector2.ZERO
 
@@ -73,35 +35,36 @@ func _process(delta: float) -> void:
 
 
 func _register_input_actions() -> void:
+	const input_map := {
+		"move_left": [KEY_A, KEY_LEFT],
+		"move_right": [KEY_D, KEY_RIGHT],
+		"move_up": [KEY_W, KEY_UP],
+		"move_down": [KEY_S, KEY_DOWN],
+		"jump": [ KEY_SPACE ],
+	}
 	var input_key: InputEventKey
 
-	for i in range(INPUT_MAP.size()):
-		var action_key: String = INPUT_MAP[i].keys().front()
-		var action_value: Array = INPUT_MAP[i].values().front()
 
-		if action_key.is_empty():
+	for action in input_map:
+		if not InputMap.has_action(action):
+			InputMap.add_action(action)
+
+		if not input_map.get(action) is Array:
 			continue
 
-		# Define a nomenclatura da açao.
-		if not InputMap.has_action(action_key):
-			InputMap.add_action(action_key)
-
-		if action_value.is_empty():
+		if input_map.get(action).is_empty():
 			continue
 
 
-		# Percorre todos os atalhos pre-definidos.
-		for keycode in action_value:
+		for keycode in input_map[action]:
 			input_key = InputEventKey.new()
 			input_key.keycode = keycode
 
-			# Ignora a açao se o atalho ja existir.
-			if InputMap.action_has_event(action_key, input_key):
+			if InputMap.action_has_event(action, input_key):
 				continue
 
 
-			# registra o atalho.
-			InputMap.action_add_event(action_key, input_key)
+			InputMap.action_add_event(action, input_key)
 
 
 # Retorna as validaçoes para as alteraçoes de estado ocorrerem.
@@ -115,7 +78,7 @@ func get_input() -> Dictionary:
 			return input_direction.x and get_character().is_on_floor(),
 
 		"can_change_to_jump": func() -> bool:
-			return Input.is_action_just_pressed(JUMP.keys().front()) and get_character().is_on_floor(),
+			return Input.is_action_just_pressed("jump") and get_character().is_on_floor(),
 
 		"can_change_to_fall": func() -> bool:
 			return abs(get_character().velocity.y) >= state_machine.get_shared_property("jump", "jump_velocity")
