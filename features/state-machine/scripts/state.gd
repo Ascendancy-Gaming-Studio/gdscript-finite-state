@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	handle_transition_one_shot.call_deferred()
+	state_machine.handle_transition_one_shot.call_deferred(self)
 
 
 func transition_in() -> void:
@@ -34,14 +34,3 @@ func transition_out() -> void:
 	set_process(false)
 	set_physics_process(false)
 	set_process_unhandled_input(false)
-
-
-func handle_transition_one_shot() -> void:
-	if not state_machine.get_one_shot():
-		return
-
-	if not state_machine.has_method("_init_previous_state"):
-		return
-
-
-	state_machine._init_previous_state(self)

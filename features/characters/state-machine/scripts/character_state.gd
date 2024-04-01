@@ -118,7 +118,7 @@ func get_input() -> Dictionary:
 			return Input.is_action_just_pressed(JUMP.keys().front()) and get_character().is_on_floor(),
 
 		"can_change_to_fall": func() -> bool:
-			return abs(get_character().velocity.y) >= handle_get_attribute("jump", "jump_velocity")
+			return abs(get_character().velocity.y) >= state_machine.get_shared_property("jump", "jump_velocity")
 	}
 
 
@@ -133,15 +133,3 @@ func handle_apply_gravity(delta: float) -> void:
 
 func _apply_gravity(delta: float) -> void:
 	get_character().velocity.y += gravity * delta
-
-
-# Temporario...
-func handle_get_attribute(state: String, property: String) -> Variant:
-	if not state_machine.get_node_or_null(state):
-		return
-
-	return _get_attribute(state, property)
-
-
-func _get_attribute(state: String, property: String) -> Variant:
-	return state_machine.get_node(state).get(property)

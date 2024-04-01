@@ -134,3 +134,22 @@ func _init_previous_state(node: State) -> void:
 	node.emit_signal("exited_transition_in")
 	node.transition_out()
 	node.emit_signal("exited_transition_out")
+
+
+func handle_transition_one_shot(node: State) -> void:
+	if not get_one_shot():
+		return
+
+
+	_transition_one_shot(node)
+
+
+func _transition_one_shot(node: State) -> void:
+	_init_previous_state(node)
+
+
+func get_shared_property(state: String, property: String) -> Variant:
+	assert(not property.begins_with("_"), "Oppss, voce nao pode acessar propriedades privada.")
+	assert(has_node(state))
+
+	return get_node(state).get(property)
