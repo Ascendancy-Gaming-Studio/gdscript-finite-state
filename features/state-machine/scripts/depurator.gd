@@ -11,11 +11,19 @@ func _ready() -> void:
 
 
 func _on_entered_transition_in() -> void:
-	print("Inicializaçao de estado: %s - id: %s" % [ state_machine.get_current_state(), state_machine.find_child(state_machine.get_current_state()).get_instance_id() ])
+	print("O componente %s entrou no estado: %s - id: %s" % [
+		owner.name,
+		state_machine.get_current_state(),
+		state_machine.get_node(state_machine.get_current_state()).get_instance_id()
+	])
 
 
 func _on_exited_transition_out() -> void:
-	print("Finalizaçao de estado: %s - id: %s" % [ state_machine.get_previous_state(), state_machine.find_child(state_machine.get_current_state()).get_instance_id() ])
+	print("O componente %s saiu do estado: %s - id: %s" % [
+		owner.name,
+		state_machine.get_current_state(),
+		state_machine.get_node(state_machine.get_current_state()).get_instance_id()
+	])
 	print("---")
 
 
