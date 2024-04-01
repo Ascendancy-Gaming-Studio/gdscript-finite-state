@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy62feyn40wip"]
+
+[ext_resource type="PackedScene" uid="uid://c82uxyxi6xfh5" path="res://features/items/coin/objects/coin.tscn" id="1_tkgi5"]
+[ext_resource type="PackedScene" uid="uid://c4t5wqp80b8d6" path="res://features/characters/shared/objects/character.tscn" id="2_8iiyu"]
+
+[node name="world_01" type="Node2D"]
+
+[node name="static_body" type="StaticBody2D" parent="."]
+collision_layer = 8
+
+[node name="collision" type="CollisionPolygon2D" parent="static_body"]
+polygon = PackedVector2Array(-20, 180, 396, 180, 396, 212, -20, 212)
+
+[node name="polygon" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-20, 180, 396, 180, 396, 212, -20, 212)
+
+[node name="coin" parent="." instance=ExtResource("1_tkgi5")]
+position = Vector2(124, 164)
+
+[node name="coin2" parent="." instance=ExtResource("1_tkgi5")]
+position = Vector2(252, 164)
+
+[node name="character" parent="." instance=ExtResource("2_8iiyu")]
+position = Vector2(60, 132)

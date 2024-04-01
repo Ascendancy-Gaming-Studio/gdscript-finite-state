@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://c54amd888v0mo"]
+
+[ext_resource type="Texture2D" uid="uid://bjxee0h5efw77" path="res://features/effects/sprites/sparkle-blue.png" id="1_th8d7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opg6l"]
+atlas = ExtResource("1_th8d7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km7id"]
+atlas = ExtResource("1_th8d7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q071e"]
+atlas = ExtResource("1_th8d7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylobb"]
+atlas = ExtResource("1_th8d7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tv3w"]
+atlas = ExtResource("1_th8d7")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ige5f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opg6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km7id")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q071e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylobb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tv3w")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="sparkler_blue" type="Node2D"]
+
+[node name="animated_sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ige5f")
+autoplay = "default"
+frame_progress = 1.0

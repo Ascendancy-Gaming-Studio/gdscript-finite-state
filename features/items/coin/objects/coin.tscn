@@ -1,0 +1,134 @@
+[gd_scene load_steps=12 format=3 uid="uid://c82uxyxi6xfh5"]
+
+[ext_resource type="Texture2D" uid="uid://dorfijv0seoe0" path="res://features/items/coin/sprites/coin.png" id="1_sw4xf"]
+[ext_resource type="PackedScene" uid="uid://bcr816ugiyxln" path="res://features/state-machine/objects/state_machine.tscn" id="1_u63e8"]
+[ext_resource type="Script" path="res://features/items/coin/scripts/coin.gd" id="1_x8vs4"]
+[ext_resource type="PackedScene" uid="uid://boiq821ko8lyi" path="res://features/effects/objects/sparkler_yellow.tscn" id="2_5mefu"]
+[ext_resource type="PackedScene" uid="uid://b5n5mxny28o4f" path="res://features/state-machine/objects/state.tscn" id="2_c6gtf"]
+[ext_resource type="PackedScene" uid="uid://bsogmbb2qmp24" path="res://features/state-machine/objects/depurator.tscn" id="3_eanrp"]
+[ext_resource type="Script" path="res://features/items/coin/scripts/spawn.gd" id="4_jdh5c"]
+[ext_resource type="Script" path="res://features/items/coin/scripts/dispose.gd" id="7_g0y6h"]
+
+[sub_resource type="Animation" id="Animation_h0juo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("collision:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-21, -7, -19, -7, -19, -6, -18, -6, -18, -5, -17, -5, -17, -3, -16, -3, -16, 3, -17, 3, -17, 5, -18, 5, -18, 6, -19, 6, -19, 7, -21, 7, -21, 8, -27, 8, -27, 7, -29, 7, -29, 6, -30, 6, -30, 5, -31, 5, -31, 3, -32, 3, -32, -3, -31, -3, -31, -5, -30, -5, -30, -6, -29, -6, -29, -7, -27, -7, -27, -8, -21, -8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("collision:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(24, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iojfg"]
+resource_name = "default"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 16, 16), Rect2(16, 0, 16, 16), Rect2(32, 0, 16, 16), Rect2(48, 0, 16, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("collision:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(-21, -7, -19, -7, -19, -6, -18, -6, -18, -5, -17, -5, -17, -3, -16, -3, -16, 3, -17, 3, -17, 5, -18, 5, -18, 6, -19, 6, -19, 7, -21, 7, -21, 8, -27, 8, -27, 7, -29, 7, -29, 6, -30, 6, -30, 5, -31, 5, -31, 3, -32, 3, -32, -3, -31, -3, -31, -5, -30, -5, -30, -6, -29, -6, -29, -7, -27, -7, -27, -8, -21, -8), PackedVector2Array(-6, -7, -5, -7, -5, -6, -4, -6, -4, -4, -3, -4, -3, 4, -4, 4, -4, 6, -5, 6, -5, 7, -6, 7, -6, 8, -10, 8, -10, 7, -11, 7, -11, 6, -12, 6, -12, 4, -13, 4, -13, -4, -12, -4, -12, -6, -11, -6, -11, -7, -10, -7, -10, -8, -6, -8), PackedVector2Array(9, -7, 10, -7, 10, 7, 9, 7, 9, 8, 7, 8, 7, 7, 6, 7, 6, -7, 7, -7, 7, -8, 9, -8), PackedVector2Array(26, -7, 27, -7, 27, -6, 28, -6, 28, -4, 29, -4, 29, 4, 28, 4, 28, 6, 27, 6, 27, 7, 26, 7, 26, 8, 22, 8, 22, 7, 21, 7, 21, 6, 20, 6, 20, 4, 19, 4, 19, -4, 20, -4, 20, -6, 21, -6, 21, -7, 22, -7, 22, -8, 26, -8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("collision:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(24, 0), Vector2(8, 0), Vector2(-7.66667, 0), Vector2(-23.8333, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rsvi2"]
+_data = {
+"RESET": SubResource("Animation_h0juo"),
+"default": SubResource("Animation_iojfg")
+}
+
+[node name="coin" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_x8vs4")
+score = 2
+fx = ExtResource("2_5mefu")
+metadata/_edit_group_ = true
+
+[node name="depurator" parent="." instance=ExtResource("3_eanrp")]
+
+[node name="state_machine" parent="." instance=ExtResource("1_u63e8")]
+_auto_start = false
+_one_shot = true
+
+[node name="spawn" parent="state_machine" instance=ExtResource("2_c6gtf")]
+script = ExtResource("4_jdh5c")
+
+[node name="dispose" parent="state_machine" instance=ExtResource("2_c6gtf")]
+script = ExtResource("7_g0y6h")
+
+[node name="collision" type="CollisionPolygon2D" parent="."]
+position = Vector2(24, 0)
+polygon = PackedVector2Array(-21, -7, -19, -7, -19, -6, -18, -6, -18, -5, -17, -5, -17, -3, -16, -3, -16, 3, -17, 3, -17, 5, -18, 5, -18, 6, -19, 6, -19, 7, -21, 7, -21, 8, -27, 8, -27, 7, -29, 7, -29, 6, -30, 6, -30, 5, -31, 5, -31, 3, -32, 3, -32, -3, -31, -3, -31, -5, -30, -5, -30, -6, -29, -6, -29, -7, -27, -7, -27, -8, -21, -8)
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_sw4xf")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="spawn" type="Marker2D" parent="."]
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rsvi2")
+}
+autoplay = "default"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,39 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="GDScript Finite State"
+run/main_scene="res://features/world/00/scenes/world_01.tscn"
+config/features=PackedStringArray("4.2", "Mobile")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=380
+window/size/viewport_height=180
+window/size/resizable=false
+window/stretch/mode="canvas_items"
+
+[editor]
+
+naming/node_name_casing=2
+
+[layer_names]
+
+2d_physics/layer_1="Players"
+2d_physics/layer_2="Enemies"
+2d_physics/layer_3="Items"
+2d_physics/layer_4="World"
+2d_physics/layer_5="Platforms"
+
+[rendering]
+
+renderer/rendering_method="mobile"
